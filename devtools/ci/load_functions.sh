@@ -50,6 +50,19 @@ function install_ambertools_travis(){
     make install -j2
 }
 
+
+function install_ambertools_travis_cmake(){
+    set -ex
+    bash amber$version/AmberTools/src/configure_python --prefix $HOME
+    export PATH=$HOME/miniconda/bin:$PATH
+    mkdir build install
+    cd build
+    cmake -DCOMPILER=gnu -DCMAKE_INSTALL_PREFIX=`pwd`/../install ../amber$version
+    make install
+    cd ../install && source amber.sh
+}
+
+
 function install_ambertools_circleci(){
     mkdir $HOME/TMP
     cd $HOME/TMP
@@ -60,12 +73,14 @@ function install_ambertools_circleci(){
         -v $AMBERTOOLS_VERSION
 }
 
+
 function run_long_test_simplified(){
     # not running all tests, skip any long long test.
     cd $AMBERHOME/AmberTools/test
     python $HOME/amber.run_tests -t $TEST_TASK -x $HOME/EXCLUDED_TESTS
     # python $TRAVIS_BUILD_DIR/amber$version/AmberTools/src/conda_tools/amber.run_tests $TEST_TASK
 }
+
 
 function run_tests(){
     set -ex
