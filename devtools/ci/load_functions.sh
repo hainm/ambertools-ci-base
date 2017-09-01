@@ -66,7 +66,6 @@ function install_ambertools_travis_cmake(){
 function install_ambertools_circleci(){
     mkdir $HOME/TMP
     cd $HOME/TMP
-    git clone https://github.com/Amber-MD/ambertools-binary-build $HOME/ambertools-binary-build
     python $HOME/ambertools-binary-build/build_all.py \
         --exclude-osx --sudo --date \
         --amberhome $HOME/ambertools-ci/amber$version \
