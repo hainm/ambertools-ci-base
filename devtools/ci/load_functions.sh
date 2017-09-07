@@ -8,7 +8,8 @@ AMBERTOOLS_VERSION=18.0
 
 function download_ambertools(){
     wget $url -O $tarfile
-    tar -xf $tarfile
+    mv $tarfile $HOME/
+    (cd $HOME && tar -xf $tarfile)
 }
 
 function install_ambertools_travis(){
@@ -16,7 +17,7 @@ function install_ambertools_travis(){
     # This AmberTools version is not an official release. It is meant for testing.
     # DO NOT USE IT PLEASE.
     osname=`python -c 'import sys; print(sys.platform)'`
-    cd amber$version
+    cd $HOME/amber$version
     if [ $osname = "darwin" ]; then
         unset CC CXX
         compiler="-macAccelerate clang"
@@ -53,7 +54,7 @@ function install_ambertools_travis(){
 
 function install_ambertools_travis_cmake(){
     set -ex
-    bash amber$version/AmberTools/src/configure_python --prefix $HOME
+    bash $HOME/amber$version/AmberTools/src/configure_python --prefix $HOME
     export PATH=$HOME/miniconda/bin:$PATH
     mkdir build install
     cd build
@@ -68,7 +69,7 @@ function install_ambertools_circleci(){
     cd $HOME/TMP
     python $HOME/ambertools-binary-build/build_all.py \
         --exclude-osx --sudo --date \
-        --amberhome $HOME/ambertools-ci/amber$version \
+        --amberhome $HOME/amber$version \
         -v $AMBERTOOLS_VERSION
 }
 
@@ -96,7 +97,7 @@ function run_tests(){
         run_long_test_simplified
     else
         if [ "$SKIP_PYTHON" != "True" ]; then
-            cat $TRAVIS_BUILD_DIR/amber$version/AmberTools/src/conda-recipe/run_test.sh | sed "s/python/amber.python/g" > $HOME/run_test.sh
+            cat $HOME/amber$version/AmberTools/src/conda-recipe/run_test.sh | sed "s/python/amber.python/g" > $HOME/run_test.sh
             bash $HOME/run_test.sh
         else
             (cd $AMBERHOME/AmberTools/test && make test.ambermini)
