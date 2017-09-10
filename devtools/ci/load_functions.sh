@@ -91,7 +91,7 @@ function run_tests(){
         ls $HOME/TMP/
         ls $HOME/TMP/*/
     else
-        source $TRAVIS_BUILD_DIR/amber$version/amber.sh
+        source $HOME/amber$version/amber.sh
     fi
     if [ "$TEST_TASK" != "" ]; then
         run_long_test_simplified
