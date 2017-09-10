@@ -1,6 +1,6 @@
 {
     "test_name": ["test.FEW"],
     "test_line": [
-        "cd /home/travis/amber18/test && cd abfqmmm/abfqmmm_dmpoh_md && ./Run.abfqmmm_dmpoh_md"
+        "cd abfqmmm/abfqmmm_dmpoh_md && ./Run.abfqmmm_dmpoh_md"
     ]
 }
