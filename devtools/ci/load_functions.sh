@@ -1,9 +1,8 @@
 #!/bin/sh
 
-url="http://ambermd.org/downloads/ambertools-dev/AmberTools18-dev.tar.gz"
-tarfile=`python -c "url='$url'; print(url.split('/')[-1])"`
+tarfile="AmberTools18-dev.tar.gz"
+url="http://ambermd.org/downloads/ambertools-dev/$tarfile"
 version='16'
-EXCLUDED_TESTS=test.parmed
 AMBERTOOLS_VERSION=18.0
 
 
@@ -11,7 +10,7 @@ function download_ambertools_from_circleci(){
     export CIRCLE_TOKEN='?circle-token=${ambertools_test_prep_download_token}'
     curl https://circleci.com/api/v1.1/project/github/hainm/ambertools-ci-prep/latest/artifacts$CIRCLE_TOKEN |
       grep -o 'https://[^"]*' > artifacts.txt
-    <artifacts.txt xargs -P4 -I % wget %$CIRCLE_TOKEN -o $HOME/AmberTools18-dev.tar.gz
+    <artifacts.txt xargs -P4 -I % wget %$CIRCLE_TOKEN -O $HOME/$tarfile
     (cd $HOME && tar -xf $tarfile)
 }
 
