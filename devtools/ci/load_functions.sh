@@ -6,11 +6,22 @@ version='16'
 EXCLUDED_TESTS=test.parmed
 AMBERTOOLS_VERSION=18.0
 
+
+function download_ambertools_from_circleci(){
+    export CIRCLE_TOKEN='?circle-token=${ambertools_test_prep_download_token}'
+    curl https://circleci.com/api/v1.1/project/github/hainm/ambertools-ci-prep/latest/artifacts$CIRCLE_TOKEN |
+      grep -o 'https://[^"]*' > artifacts.txt
+    <artifacts.txt xargs -P4 -I % wget %$CIRCLE_TOKEN -o $HOME/AmberTools18-dev.tar.gz
+    (cd $HOME && tar -xf $tarfile)
+}
+
+
 function download_ambertools(){
     wget $url -O $tarfile
     mv $tarfile $HOME/
     (cd $HOME && tar -xf $tarfile)
 }
+
 
 function install_ambertools_travis(){
     set -ex
