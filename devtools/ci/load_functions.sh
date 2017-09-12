@@ -22,6 +22,20 @@ function download_ambertools(){
 }
 
 
+function install_conda_package_osx(){
+    bash $HOME/amber${version}/AmberTools/src/configure_python --prefix $HOME
+    export PATH=$HOME/miniconda/bin:$PATH
+    conda install conda-build=2.1.17 -y
+    mkdir $HOME/TMP
+    cd $HOME/TMP
+    python $HOME/ambertools-binary-build/build_all.py \
+        --amberhome $HOME/amber${version} \
+        --py 2.7 \
+        -v $CONDA_BUILD_AMBERTOOLS_VERSION \
+        --exclude-linux
+}
+
+
 function install_ambertools_travis(){
     set -ex
     # This AmberTools version is not an official release. It is meant for testing.
