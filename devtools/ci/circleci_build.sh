@@ -1,7 +1,8 @@
 #!/bin/sh
 
 source devtools/ci/load_functions.sh
-download_ambertools
+download_ambertools_from_circleci
+# download_ambertools
 install_ambertools_circleci
 
 
