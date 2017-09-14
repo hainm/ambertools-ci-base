@@ -82,11 +82,12 @@ function install_ambertools_travis_cmake(){
     bash $HOME/amber$version/AmberTools/src/configure_python --prefix $HOME
     export PATH=$HOME/miniconda/bin:$PATH
     conda install cmake -c conda-forge -y
-    mkdir $HOME/build $HOME/install
-    cd $HOME/build
-    cmake -DCOMPILER=gnu -DCMAKE_INSTALL_PREFIX=$HOME/install $HOME/amber$version
+    mkdir -p $HOME/TMP/build
+    mkdir -p $HOME/TMP/install
+    cd $HOME/TMP/build
+    cmake -DCOMPILER=gnu -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install $HOME/amber$version
     make install
-    cd $HOME/install && source amber.sh
+    cd $HOME/TMP/install && source amber.sh
 }
 
 
