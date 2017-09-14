@@ -88,6 +88,7 @@ function install_ambertools_travis_cmake(){
     cmake -DCOMPILER=gnu -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install $HOME/amber$version
     make install
     cd $HOME/TMP/install && source amber.sh
+    echo "AMBERHOME = " $AMBERHOME
 }
 
 
