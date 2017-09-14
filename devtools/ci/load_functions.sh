@@ -77,7 +77,7 @@ function install_ambertools_travis(){
 }
 
 
-function install_ambertools_travis_cmake(){
+function install_ambertools_cmake(){
     set -ex
     bash $HOME/amber$version/AmberTools/src/configure_python --prefix $HOME
     export PATH=$HOME/miniconda/bin:$PATH
