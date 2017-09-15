@@ -83,7 +83,10 @@ function install_ambertools_cmake(){
     mkdir -p $HOME/TMP/build
     mkdir -p $HOME/TMP/install
     cd $HOME/TMP/build
-    cmake -DCOMPILER=gnu -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install $HOME/amber$version
+    cmake -DCOMPILER=gnu \
+        -DFORCE_INTERNAL_LIBS=readline \
+        -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install \
+        $HOME/amber$version
     make install
     cd $HOME/TMP/install && source amber.sh
     echo "AMBERHOME = " $AMBERHOME
