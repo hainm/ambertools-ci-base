@@ -38,7 +38,6 @@ function install_conda_package_osx(){
 
 
 function install_ambertools_travis(){
-    set -ex
     # This AmberTools version is not an official release. It is meant for testing.
     # DO NOT USE IT PLEASE.
     osname=`python -c 'import sys; print(sys.platform)'`
@@ -78,7 +77,6 @@ function install_ambertools_travis(){
 
 
 function install_ambertools_cmake(){
-    set -ex
     bash $HOME/amber$version/AmberTools/src/configure_python --prefix $HOME
     export PATH=$HOME/miniconda/bin:$PATH
     conda install cmake -c conda-forge -y
@@ -118,7 +116,6 @@ function run_long_test_simplified(){
 
 
 function run_tests(){
-    set -ex
     if [ "$USE_AMBER_PREFIX" = "True" ]; then
         source $HOME/TMP/amber.sh
         ls $AMBERHOME
