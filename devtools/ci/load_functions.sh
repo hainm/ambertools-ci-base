@@ -113,8 +113,7 @@ function run_long_test_simplified(){
     # not running all tests, skip any long long test.
     cd $AMBERHOME/AmberTools/test
     python -m pip install numpy --user # in case Miniconda is not installed
-    python $HOME/amber.run_tests -t $TEST_TASK -x $HOME/EXCLUDED_TESTS
-    # python $TRAVIS_BUILD_DIR/amber$version/AmberTools/src/conda_tools/amber.run_tests $TEST_TASK
+    python $HOME/amber.run_tests -t $TEST_TASK -x $HOME/EXCLUDED_TESTS -n 1
 }
 
 
