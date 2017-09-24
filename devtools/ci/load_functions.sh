@@ -117,6 +117,16 @@ function run_long_test_simplified(){
 }
 
 
+function post_process_osx_build(){
+    # Change absolute path to loader_path
+    python $HOME/ambertools-binary-build/conda_tools/fix_rpath_osx.py \
+        $HOME/amber${version}
+    python $HOME/ambertools-binary-build/conda_tools/update_gfortran_libs_osx.py \
+        --copy-gfortran \
+        $HOME/amber${version}
+}
+
+
 function run_tests(){
     if [ "$USE_AMBER_PREFIX" = "True" ]; then
         source $HOME/TMP/amber.sh
