@@ -78,7 +78,7 @@ function install_ambertools_travis(){
 
 function install_ambertools_cmake(){
     bash $HOME/amber$version/AmberTools/src/configure_python --prefix $HOME
-    export PATH=$HOME/miniconda/bin:$PATH
+    export PATH=/usr/local/gfortran/bin:$HOME/miniconda/bin:$PATH
     conda install cmake -c conda-forge -y
     mkdir -p $HOME/TMP/build
     mkdir -p $HOME/TMP/install
