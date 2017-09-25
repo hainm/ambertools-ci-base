@@ -86,6 +86,7 @@ function install_ambertools_cmake(){
     cmake -DCOMPILER=gnu \
         -DFORCE_INTERNAL_LIBS=readline \
         -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install \
+        -DBUILD_GUI=FALSE \
         $HOME/amber$version
     make install
     cd $HOME/TMP/install && source amber.sh
