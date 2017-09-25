@@ -92,6 +92,10 @@ function install_ambertools_cmake(){
     make install
     cd $HOME/TMP/install && source amber.sh
     echo "AMBERHOME = " $AMBERHOME
+    echo "ls $AMBERHOME"
+    ls $AMBERHOME
+    echo "ls $HOME/TMP/install"
+    ls $HOME/TMP/install
 }
 
 
