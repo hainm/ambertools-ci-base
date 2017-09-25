@@ -150,3 +150,10 @@ function run_tests(){
         fi
     fi
 }
+
+
+function run_tests_cmake(){
+    source $HOME/tmp/install/amber.sh
+    python -m pip install numpy --user # in case Miniconda is not installed
+    python $HOME/amber.run_tests -t $TEST_TASK -x $HOME/EXCLUDED_TESTS -n 1
+}
