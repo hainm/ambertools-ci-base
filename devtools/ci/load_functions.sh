@@ -79,7 +79,15 @@ function install_ambertools_travis(){
 function install_ambertools_cmake(){
     bash $HOME/amber$version/AmberTools/src/configure_python --prefix $HOME
     export PATH=/usr/local/gfortran/bin:$HOME/miniconda/bin:$PATH
-    conda install cmake -c conda-forge -y
+    
+    if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+        mkdir $HOME/cmake_install
+        curl https://cmake.org/files/v3.9/cmake-3.9.4-Linux-x86_64.sh -O
+        bash cmake-3.9.4-Linux-x86_64.sh --prefix=$HOME/cmake_install --skip-license
+        export PATH=$HOME/cmake_install/bin:$PATH
+    else
+        conda install cmake -c conda-forge -y
+    fi
     mkdir -p $HOME/TMP/build
     mkdir -p $HOME/TMP/install
     cd $HOME/TMP/build
