@@ -168,5 +168,8 @@ function run_tests(){
 function run_tests_cmake(){
     # source $HOME/tmp/install/amber.sh # /Users/travis/tmp/install\nOverriding shell_session_update/config.h'
     python -m pip install numpy --user # in case Miniconda is not installed
-    python $HOME/amber.run_tests -t $TEST_TASK -x $HOME/EXCLUDED_TESTS -n 1
+    python $HOME/amber.run_tests -t test.pytraj -x $HOME/EXCLUDED_TESTS -n 1
+    python $HOME/amber.run_tests -t test.pdb4amber -x $HOME/EXCLUDED_TESTS -n 1
+    parmed -h # parmed test is too slow.
+    python -c "import sander; print(sander)"
 }
