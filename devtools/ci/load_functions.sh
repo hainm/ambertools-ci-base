@@ -104,6 +104,7 @@ function install_ambertools_cmake(){
     ls $AMBERHOME
     echo "ls $HOME/TMP/install"
     ls $HOME/TMP/install
+    rm -rf $HOME/TMP/build
 }
 
 
