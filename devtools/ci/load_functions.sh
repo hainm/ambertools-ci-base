@@ -91,7 +91,7 @@ function install_ambertools_cmake(){
     mkdir -p $HOME/TMP/build
     mkdir -p $HOME/TMP/install
     cd $HOME/TMP/build
-    cmake -DCOMPILER=gnu \
+    cmake -DCOMPILER=GNU \
         -DFORCE_INTERNAL_LIBS=readline \
         -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install \
         -DBUILD_GUI=FALSE \
