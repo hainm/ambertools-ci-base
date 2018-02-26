@@ -153,7 +153,7 @@ function run_tests(){
     else
         source $HOME/amber$version/amber.sh
     fi
-    ls $AMBERHOME/amber_3rd_party/libgfortran.3.dylib
+    ls $AMBERHOME/lib/amber_3rd_party/libgfortran.3.dylib
     amber.python -c "import pytraj; pytraj.run_tests()"
     if [ "$TEST_TASK" != "" ]; then
         run_long_test_simplified
