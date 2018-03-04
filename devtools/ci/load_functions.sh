@@ -43,8 +43,13 @@ function install_ambertools_travis(){
     osname=`python -c 'import sys; print(sys.platform)'`
     cd $HOME/amber$version
     if [ $osname = "darwin" ]; then
-        unset CC CXX
-        compiler="-macAccelerate clang"
+        if [ "$COMPILER" = "clang" ]; do
+            unset CC CXX
+            compiler="-macAccelerate clang"
+        else
+            export CC=/usr/local/gfortran/bin/gcc
+            export CXX=/usr/local/gfortran/bin/g++
+            compiler="gnu"
     else
         compiler="gnu"
     fi
