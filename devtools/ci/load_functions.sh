@@ -47,6 +47,7 @@ function install_ambertools_travis(){
             unset CC CXX
             compiler="-macAccelerate clang"
         else
+            echo "Setting CC and CXX environments"
             export CC=/usr/local/gfortran/bin/gcc
             export CXX=/usr/local/gfortran/bin/g++
             compiler="gnu"
@@ -54,6 +55,7 @@ function install_ambertools_travis(){
         compiler="gnu"
     fi
     if [ "$MINICONDA_WILL_BE_INSTALLED" = "True" ]; then
+        echo "DEBUG: Configuring"
         yes | ./configure $compiler
     elif [ "$MINICONDA_IN_AMBERHOME" = "True" ]; then
         bash AmberTools/src/configure_python --prefix `pwd`
