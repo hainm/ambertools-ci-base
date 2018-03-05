@@ -42,21 +42,22 @@ function install_ambertools_travis(){
     # DO NOT USE IT PLEASE.
     osname=`python -c 'import sys; print(sys.platform)'`
     cd $HOME/amber$version
-    if [ $osname = "darwin" ]; then
+    if [ "$osname" = "darwin" ]; then
         if [ "$COMPILER" = "clang" ]; then
             unset CC CXX
-            compiler="-macAccelerate clang"
+            compiler="-macAccelerate $COMPILER"
         else
             echo "Setting CC and CXX environments"
             export CC=/usr/local/gfortran/bin/gcc
             export CXX=/usr/local/gfortran/bin/g++
-            compiler="gnu"
+            compiler=$COMPILER
         fi
     else
         compiler="gnu"
     fi
     if [ "$MINICONDA_WILL_BE_INSTALLED" = "True" ]; then
         echo "DEBUG: Configuring"
+        echo "compiler = $compiler"
         yes | ./configure $compiler
     elif [ "$MINICONDA_IN_AMBERHOME" = "True" ]; then
         bash AmberTools/src/configure_python --prefix `pwd`
