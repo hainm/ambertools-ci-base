@@ -42,7 +42,9 @@ function install_ambertools_travis(){
     # DO NOT USE IT PLEASE.
     osname=`python -c 'import sys; print(sys.platform)'`
     cd $HOME/amber$version
+    echo "COMPILER = $COMPILER"
     if [ "$osname" = "darwin" ]; then
+        echo "COMPILER darwin = $COMPILER"
         if [ "$COMPILER" = "clang" ]; then
             unset CC CXX
             compiler="-macAccelerate $COMPILER"
