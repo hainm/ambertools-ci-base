@@ -99,23 +99,30 @@ function install_ambertools_cmake(){
     else
         conda install cmake -c conda-forge -y
     fi
-    mkdir -p $HOME/TMP/build
     mkdir -p $HOME/TMP/install
-    cd $HOME/TMP/build
-    cmake -DCOMPILER=GNU \
-        -DFORCE_INTERNAL_LIBS=readline \
-        -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install \
-        -DBUILD_GUI=FALSE \
-        -DUSE_MINICONDA=FALSE \
-        $HOME/amber$version
-    make install
-    cd $HOME/TMP/install && source amber.sh
-    echo "AMBERHOME = " $AMBERHOME
-    echo "ls $AMBERHOME"
-    ls $AMBERHOME
-    echo "ls $HOME/TMP/install"
-    ls $HOME/TMP/install
-    rm -rf $HOME/TMP/build
+    if [ "${USE_CONFIGURE_CMAKE}" = "true" ]; then
+        cd $HOME/amber$version
+        bash configure_cmake --prefix $HOME/TMP/install
+        make install
+        rm -rf $HOME/amber$version/build
+    else
+        mkdir -p $HOME/TMP/build
+        cd $HOME/TMP/build
+        cmake -DCOMPILER=GNU \
+            -DFORCE_INTERNAL_LIBS=readline \
+            -DCMAKE_INSTALL_PREFIX=$HOME/TMP/install \
+            -DBUILD_GUI=FALSE \
+            -DUSE_MINICONDA=FALSE \
+            $HOME/amber$version
+        make install
+        cd $HOME/TMP/install && source amber.sh
+        echo "AMBERHOME = " $AMBERHOME
+        echo "ls $AMBERHOME"
+        ls $AMBERHOME
+        echo "ls $HOME/TMP/install"
+        ls $HOME/TMP/install
+        rm -rf $HOME/TMP/build
+    fi
 }
 
 
