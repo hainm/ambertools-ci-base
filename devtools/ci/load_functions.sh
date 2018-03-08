@@ -102,7 +102,7 @@ function install_ambertools_cmake(){
     mkdir -p $HOME/TMP/install
     if [ "${USE_CONFIGURE_CMAKE}" = "true" ]; then
         cd $HOME/amber$version
-        bash configure_cmake --prefix $HOME/TMP/install
+        bash configure_cmake --prefix $HOME/TMP/install gnu
         make install
         rm -rf $HOME/amber$version/build
     else
