@@ -1,7 +1,7 @@
 #!/bin/sh
 
-tarfile="AmberTools18-dev.tar.gz"
-url="http://ambermd.org/downloads/ambertools-dev/$tarfile"
+tarfile="AmberTools18.09mar18.tar.bz2.iwejur"
+url="ambermd.org/downloads/$tarfile"
 version='18'
 AMBERTOOLS_VERSION=18.0
 CONDA_BUILD_AMBERTOOLS_VERSION=18.dev
