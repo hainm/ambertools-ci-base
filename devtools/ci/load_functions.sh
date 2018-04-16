@@ -30,7 +30,7 @@ function install_conda_package_osx(){
     mkdir $HOME/TMP
     cd $HOME/TMP
     python $HOME/ambertools-binary-build/build_all.py \
-        --amberhome $HOME/amber${version} \
+        $HOME/amber${version} \
         --py 2.7 \
         -v $CONDA_BUILD_AMBERTOOLS_VERSION \
         --exclude-linux
@@ -132,12 +132,12 @@ function install_ambertools_circleci(){
     # dry run
     python $HOME/ambertools-binary-build/build_all.py \
         --exclude-osx --sudo --date \
-        --amberhome $HOME/amber$version \
+        $HOME/amber$version \
         -v $AMBERTOOLS_VERSION -d
 
     python $HOME/ambertools-binary-build/build_all.py \
         --exclude-osx --sudo --date \
-        --amberhome $HOME/amber$version \
+        $HOME/amber$version \
         -v $AMBERTOOLS_VERSION
 }
 
